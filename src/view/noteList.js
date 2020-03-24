@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,6 +6,7 @@ import {
     FlatList
 } from 'react-native';
 import dayjs from 'dayjs';
+import getMarkColor from '../lib/getMarkColor';
 
 /**
  * Render note list
@@ -15,9 +16,10 @@ import dayjs from 'dayjs';
  * @param {Date} notes.date
  */
 export default function noteList(notes, navigation) {
+    let [options, setOptions] = useState({});
 
     function goToNote(id) {
-        navigation.navigate('Note', id);
+        navigation.navigate('Note', { id });
     }
 
     /**
@@ -28,37 +30,22 @@ export default function noteList(notes, navigation) {
      * @param {Number} mark 
      */
     function noteItem(id, title, date, mark) {
-        let backgroundColor = '#F5F5F5';
-        switch (mark) {
-            case 1:
-                backgroundColor = '#F8CECC'
-                break;
-            case 2:
-                backgroundColor = '#FFF2CC'
-                break;
-            case 3:
-                backgroundColor = '#DAE8FC'
-                break;
-            case 4:
-                backgroundColor = '#D5E8D4'
-                break;
-            case 5:
-                backgroundColor = '#CCCCCC'
-                break;
-        }
-        let pressTime = 0;
+
+        let backgroundColor = getMarkColor(mark);
+
         return (
             <View
                 id={id}
                 style={[styles.noteItem, { backgroundColor }]}
-                onTouchStart={() => pressTime = new Date()}
-                onTouchEnd={() => goToNote(id)/* exibir opções on long press 120*/}
-            >
+                onTouchEnd={() => goToNote(id)}>
                 <View>
                     <Text style={styles.noteItemTitle}>{title}</Text>
                 </View>
                 <View>
                     <Text style={styles.noteItemLastUpdate}>Last update: {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row-reverse' }}>
+                    
                 </View>
             </View>
         );

@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
     TouchableOpacity,
     Text,
-    View
+    View,
+    Image
 } from 'react-native';
-import {
-    Icon
-} from 'react-native-elements';
 import noteList from './noteList';
-
-let notes = [
-    { id: '1', title: 'first title', date: new Date(), mark: 0 },
-    { id: '2', title: 'first title', date: new Date(), mark: 1 }
-];
+import db from '../lib/sowenNotesDB';
 
 export default function Home({ navigation }) {
+    const [notes, setNotes] = useState([]);
+
+    db.selectAll().then(i => setNotes(i));
     return (
         <View style={styles.container}>
             {noteList(notes, navigation)}
             <TouchableOpacity style={styles.addNote}
                 onPressOut={() => navigation.navigate('Note')}
             >
-                <Icon name={"add"} size={30} color="#FFF" />
+                <Image source={require('../../assets/add.png')} style={styles.icon} />
             </TouchableOpacity>
         </View >
     );
@@ -34,6 +31,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
         justifyContent: 'center',
+        padding: 15
     },
     addNote: {
         position: 'absolute',
@@ -47,5 +45,6 @@ const styles = StyleSheet.create({
         bottom: 15,
         borderColor: '#CCC',
         borderWidth: 1,
-    }
+    },
+    icon: { width: 30, height: 30, tintColor: "#FFF" }
 });

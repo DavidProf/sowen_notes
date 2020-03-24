@@ -57,3 +57,5 @@ A simple mobile note app from sowen series
 >> Implemen search engine to do easier find a note.
 >>
 >> **"I'm broken, but I'm cool"** *(by David Lima)*
+
+Icons from https://material.io/resources/icons

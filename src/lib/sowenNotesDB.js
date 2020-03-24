@@ -86,7 +86,7 @@ let sowenNotesDB = {
     /**
      * Select a note
      * @param {String} id
-     * @returns {Rows} ???
+     * @returns {Object} note
      */
     async selectById(id) {
         if (typeof id != 'string')
@@ -99,7 +99,7 @@ let sowenNotesDB = {
     },
     /**
      * Select all notes
-     * @returns {Rows} ???
+     * @returns {Object[]} notes array
      */
     async selectAll() {
         let sql = `select * from note`;
