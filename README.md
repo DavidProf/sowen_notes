@@ -5,10 +5,10 @@ A simple mobile note app from sowen series
 [Download apk](https://link) *isn't working for now*
 
 ## Funcionalities
-- [ ] List all notes
-- [ ] Add a note with title and content (max content: 300 characters)
-- [ ] Read the note
-- [ ] Edit the note
+- [X] List all notes
+- [X] Add a note with title and content
+- [X] Read the note
+- [X] Edit the note
 - [ ] Delete the note or select multiple notes and delete
 - [ ] Backup data on google drive
 

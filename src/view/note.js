@@ -54,7 +54,7 @@ export default function note({ route: { params }, navigation }) {
             <TextInput
                 style={styles.content}
                 multiline={true}
-                numberOfLines={1000}
+                numberOfLines={10000}
                 defaultValue={note.content}
                 onChangeText={text => setNote({ ...note, content: text })} />
             <View style={[styles.picker, { backgroundColor: getMarkColor(note.mark) }]}>
