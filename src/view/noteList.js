@@ -3,11 +3,12 @@ import {
     StyleSheet,
     Text,
     View,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native';
 import dayjs from 'dayjs';
 import getMarkColor from '../lib/getMarkColor';
-
+import db from '../lib/sowenNotesDB';
 /**
  * Render note list
  * @param {Object[]} notes
@@ -16,8 +17,6 @@ import getMarkColor from '../lib/getMarkColor';
  * @param {Date} notes.date
  */
 export default function noteList(notes, navigation) {
-    let [options, setOptions] = useState({});
-
     function goToNote(id) {
         navigation.navigate('Note', { id });
     }
@@ -44,8 +43,10 @@ export default function noteList(notes, navigation) {
                 <View>
                     <Text style={styles.noteItemLastUpdate}>Last update: {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row-reverse' }}>
-                    
+                <View style={styles.noteItemDelete}>
+                    <TouchableOpacity onPress={() => db.delete([id]).then(() => navigation.navigate('Home'))}>
+                        <Text style={styles.noteItemDelete}>delete</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -74,5 +75,13 @@ const styles = StyleSheet.create({
     },
     noteItemLastUpdate: {
         color: '#7c7d80'
+    },
+    noteItemDelete: {
+        flex: 1,
+        flexDirection: 'row-reverse',
+        right: 5,
+        textTransform: "uppercase",
+        fontFamily: "sans-serif-medium",
+        color: "#B85450"
     }
 });
