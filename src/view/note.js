@@ -24,6 +24,7 @@ import db from '../lib/sowenNotesDB';
  * @param {Number} note.mark
  */
 export default function note({ route: { params }, navigation }) {
+    const [pressed, setPressed] = useState(false);
     const [note, setNote] = useState({
         title: dayjs().format('YYYY-MM-DD HH:mm'),
         content: '',
@@ -36,13 +37,14 @@ export default function note({ route: { params }, navigation }) {
             .then(foundedNote => setNote({ ...note, ...foundedNote, founded: true }));
 
     async function save() {
+        setPressed(true);
         try {
             if (note.id)
                 await db.update(note.id, note.title, note.content, note.mark);
             else
                 await db.insert(note.title, note.content, note.mark);
             return true;
-        } catch (e) { Toast.showWithGravity(e.message, Toast.SHORT, Toast.CENTER) }
+        } catch (e) { setPressed(false); Toast.showWithGravity(e.message, Toast.SHORT, Toast.CENTER); }
     }
 
     return note.founded ? (
@@ -70,6 +72,7 @@ export default function note({ route: { params }, navigation }) {
                 </Picker>
             </View>
             <TouchableOpacity style={styles.back}
+                disabled={pressed}
                 onPressOut={async () => await save() && navigation.navigate('Home')}>
                 <Image source={require('../../assets/done.png')} style={styles.icon} />
             </TouchableOpacity>

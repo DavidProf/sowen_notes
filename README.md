@@ -9,7 +9,7 @@ A simple mobile note app from sowen series
 - [X] Add a note with title and content
 - [X] Read the note
 - [X] Edit the note
-- [ ] Delete the note or select multiple notes and delete
+- [X] Delete the note or select multiple notes and delete
 - [ ] Backup data on google drive
 
 ## How to contribute
