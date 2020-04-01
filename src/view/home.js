@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     TouchableOpacity,
-    Text,
     View,
     Image
 } from 'react-native';
@@ -13,13 +11,13 @@ import db from '../lib/sowenNotesDB';
 export default function Home({ navigation }) {
     const [notes, setNotes] = useState([]);
 
-    db.selectAll().then(i => setNotes(i));
+    db.selectAll().then(rows => setNotes(rows));
+
     return (
         <View style={styles.container}>
             {noteList(notes, navigation)}
             <TouchableOpacity style={styles.addNote}
-                onPressOut={() => navigation.navigate('Note')}
-            >
+                onPressOut={() => navigation.navigate('Note')}>
                 <Image source={require('../../assets/add.png')} style={styles.icon} />
             </TouchableOpacity>
         </View >
