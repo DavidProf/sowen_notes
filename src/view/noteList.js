@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     FlatList,
@@ -9,6 +8,7 @@ import {
 import dayjs from 'dayjs';
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
+import styles from './styles';
 /**
  * Render note list
  * @param {Object[]} notes
@@ -20,7 +20,6 @@ export default function noteList(notes, navigation) {
     function goToNote(id) {
         navigation.navigate('Note', { id });
     }
-
     /**
      * render a note info
      * @param {String} id 
@@ -29,7 +28,6 @@ export default function noteList(notes, navigation) {
      * @param {Number} mark 
      */
     function noteItem(id, title, date, mark) {
-
         let backgroundColor = getMarkColor(mark);
 
         return (
@@ -59,29 +57,4 @@ export default function noteList(notes, navigation) {
             keyExtractor={note => note.id}
         />
     );
-}
-const styles = StyleSheet.create({
-    noteItem: {
-        flex: 1,
-        backgroundColor: '#fff',
-        justifyContent: 'center',
-        borderRadius: 8,
-        padding: 5,
-        margin: 5
-    },
-    noteItemTitle: {
-        color: '#282829',
-        fontWeight: 'bold'
-    },
-    noteItemLastUpdate: {
-        color: '#7c7d80'
-    },
-    noteItemDelete: {
-        flex: 1,
-        flexDirection: 'row-reverse',
-        right: 5,
-        textTransform: "uppercase",
-        fontFamily: "sans-serif-medium",
-        color: "#B85450"
-    }
-});
+};

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     TouchableOpacity,
@@ -13,6 +12,7 @@ import dayjs from 'dayjs';
 import Toast from 'react-native-simple-toast';
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
+import styles from './styles';
 
 /**
  * Render note list
@@ -71,7 +71,7 @@ export default function note({ route: { params }, navigation }) {
                     <Picker.Item label="Grey" value={5} />
                 </Picker>
             </View>
-            <TouchableOpacity style={styles.back}
+            <TouchableOpacity style={styles.roundedButton}
                 disabled={pressed}
                 onPressOut={async () => await save() && navigation.navigate('Home')}>
                 <Image source={require('../../assets/done.png')} style={styles.icon} />
@@ -79,44 +79,3 @@ export default function note({ route: { params }, navigation }) {
         </SafeAreaView>
     ) : (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text>Wait a moment</Text></View>);
 }
-
-const styles = StyleSheet.create({
-    title: {
-        height: 50,
-        borderColor: '#000',
-        borderRadius: 8,
-        backgroundColor: '#FFF',
-        textAlign: 'center',
-        marginBottom: 15,
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
-    content: {
-        flex: 1,
-        borderColor: '#000',
-        borderRadius: 8,
-        backgroundColor: '#FFF',
-        textAlignVertical: 'top',
-        padding: 15
-    },
-    picker: {
-        height: 50,
-        width: 200,
-        margin: 15,
-        borderRadius: 15
-    },
-    back: {
-        position: 'absolute',
-        height: 65,
-        width: 65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#2A7AFA',
-        borderRadius: 50,
-        right: 15,
-        bottom: 15,
-        borderColor: '#CCC',
-        borderWidth: 1,
-    },
-    icon: { width: 30, height: 30, tintColor: "#FFF" }
-});
