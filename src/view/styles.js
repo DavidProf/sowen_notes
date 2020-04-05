@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 15,
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: 26
     },
     content: {
         flex: 1,
@@ -55,7 +56,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
         justifyContent: 'center',
-        padding: 15
+        padding: 15,
+        paddingTop: 26
     },
     // home.js & note.js
     icon: { width: 30, height: 30, tintColor: "#FFF" },
