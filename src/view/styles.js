@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     // noteList.js
     noteItem: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFF',
         justifyContent: 'center',
         borderRadius: 8,
         padding: 5,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         margin: 15,
         borderRadius: 15
     },
-    // home.js
+    // home.js & settings.js
     container: {
         flex: 1,
         backgroundColor: '#FFF',
@@ -73,6 +73,19 @@ const styles = StyleSheet.create({
         bottom: 15,
         borderColor: '#CCC',
         borderWidth: 1,
+    },
+    // settings.js
+    itemButton: {
+        marginVertical: 5,
+        padding: 12,
+        borderRadius: 5,
+        backgroundColor: '#2A7AFA',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    itemButtonText: {
+        marginTop: 5,
+        color: '#fff'
     }
 });
 

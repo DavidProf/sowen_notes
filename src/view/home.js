@@ -28,11 +28,10 @@ export default function Home({ navigation }) {
             {noteList(notes, navigation)}
             <Animated.View style={[styles.roundedButton, { right: pX }]}>
                 <TouchableOpacity
-                    onPressOut={() => alert('backup')}>
-                    <Image source={require('../../assets/cloud.png')} style={styles.icon} />
+                    onPressOut={() => navigation.navigate('Settings')}>
+                    <Image source={require('../../assets/settings.png')} style={styles.icon} />
                 </TouchableOpacity>
             </Animated.View>
-
 
             <Animated.View style={[styles.roundedButton, { bottom: pY }]}>
                 <TouchableOpacity
