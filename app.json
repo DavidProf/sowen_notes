@@ -4,7 +4,6 @@
     "slug": "sowen_notes",
     "privacy": "public",
     "platforms": [
-      "ios",
       "android",
       "web"
     ],
