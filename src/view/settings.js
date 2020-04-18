@@ -5,12 +5,8 @@ import {
     Image,
     View
 } from 'react-native';
-import styles from './styles';
 
-import uploadIcon from '../../assets/upload.png';
-import downloadIcon from '../../assets/download.png';
-import sunIcon from '../../assets/sun.png';
-import moonIcon from '../../assets/moon.png';
+import styles from './styles';
 
 export default function Settings({ route: { params }, navigation }) {
 
@@ -19,17 +15,24 @@ export default function Settings({ route: { params }, navigation }) {
         <View style={[styles.container, { justifyContent: "flex-start" }]}>
             <TouchableOpacity style={styles.itemButton}>
                 <Text style={styles.itemButtonText}>Backup</Text>
-                <Image source={uploadIcon} style={styles.icon} />
+                <Image source={icons.upload} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.itemButton}>
                 <Text style={styles.itemButtonText}>Restore</Text>
-                <Image source={downloadIcon} style={styles.icon} />
+                <Image source={icons.download} style={styles.icon} />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.itemButton}>
                 <Text style={styles.itemButtonText}>Change theme</Text>
-                <Image source={sunIcon} style={styles.icon} />
+                <Image source={icons.sun} style={styles.icon} />
             </TouchableOpacity>
         </View>
-    )
+    );
 };
+
+const icons = {
+    upload: require('../../assets/upload.png'),
+    download: require('../../assets/download.png'),
+    sun: require('../../assets/sun.png'),
+    moon: require('../../assets/moon.png'),
+}

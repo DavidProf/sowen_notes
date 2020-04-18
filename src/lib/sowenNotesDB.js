@@ -1,5 +1,6 @@
-import DB from './sqlite';
 import uuid from 'uuid-random';
+
+import DB from './sqlite';
 
 let db = new DB({
     name: 'sowen_notes',

@@ -5,6 +5,7 @@ import {
     Image,
     Animated
 } from 'react-native';
+
 import noteList from './noteList';
 import db from '../lib/sowenNotesDB';
 import styles from './styles';
@@ -29,21 +30,28 @@ export default function Home({ navigation }) {
             <Animated.View style={[styles.roundedButton, { right: pX }]}>
                 <TouchableOpacity
                     onPressOut={() => navigation.navigate('Settings')}>
-                    <Image source={require('../../assets/settings.png')} style={styles.icon} />
+                    <Image source={icons.settings} style={styles.icon} />
                 </TouchableOpacity>
             </Animated.View>
 
             <Animated.View style={[styles.roundedButton, { bottom: pY }]}>
                 <TouchableOpacity
                     onPressOut={() => navigation.navigate('Note')}>
-                    <Image source={require('../../assets/add.png')} style={styles.icon} />
+                    <Image source={icons.add} style={styles.icon} />
                 </TouchableOpacity>
             </Animated.View>
 
             <TouchableOpacity style={[styles.roundedButton]}
                 onPressOut={() => showOptions()}>
-                <Image source={show ? require('../../assets/x.png') : require('../../assets/burguer.png')} style={styles.icon} />
+                <Image source={show ? icons.x : icons.burguer} style={styles.icon} />
             </TouchableOpacity>
         </View >
     );
-}
+};
+
+const icons = {
+    burguer: require('../../assets/burguer.png'),
+    x: require('../../assets/x.png'),
+    add: require('../../assets/add.png'),
+    settings: require('../../assets/settings.png')
+};

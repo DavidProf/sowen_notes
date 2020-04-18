@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import dayjs from 'dayjs';
 import Toast from 'react-native-simple-toast';
+
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
 import styles from './styles';
@@ -44,7 +45,7 @@ export default function note({ route: { params }, navigation }) {
             else
                 await db.insert(note.title, note.content, note.mark);
             return true;
-        } catch (e) { setPressed(false); Toast.showWithGravity(e.message, Toast.SHORT, Toast.CENTER); }
+        } catch (e) { setPressed(false); Toast.showWithGravity(e.message, Toast.SHORT); }
     }
 
     return note.founded ? (
@@ -74,8 +75,12 @@ export default function note({ route: { params }, navigation }) {
             <TouchableOpacity style={styles.roundedButton}
                 disabled={pressed}
                 onPressOut={async () => await save() && navigation.navigate('Home')}>
-                <Image source={require('../../assets/done.png')} style={styles.icon} />
+                <Image source={icons.done} style={styles.icon} />
             </TouchableOpacity>
         </SafeAreaView>
     ) : (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text>Wait a moment</Text></View>);
-}
+};
+
+const icons = {
+    done: require('../../assets/done.png')
+};

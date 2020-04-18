@@ -29,7 +29,8 @@ function DB(databaseStructure) {
 /**
  * Executes a sql querry
  * @param {String} sql 
- * @param {String[]|Number[]} params 
+ * @param {String[]|Number[]} params
+ * @returns {[SQLite.Transaction, SQLite.ResultSet]}
  */
 DB.prototype.executeSql = function (sql, params = []) {
     if (typeof sql != 'string') throw new Error('Invalid sql command');
@@ -105,13 +106,5 @@ DB.prototype.createIndex = async function (tableName, colls = [], unique = false
     );
     return finalized;
 }
-/**
- * Add follow
- * insert
- * update
- * delete
- * select
- * BASE ON expo-sqlite-orm
- */
 
 export default DB;

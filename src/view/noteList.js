@@ -6,9 +6,11 @@ import {
     TouchableOpacity
 } from 'react-native';
 import dayjs from 'dayjs';
+
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
 import styles from './styles';
+
 /**
  * Render note list
  * @param {Object[]} notes
@@ -17,9 +19,7 @@ import styles from './styles';
  * @param {Date} notes.date
  */
 export default function noteList(notes, navigation) {
-    function goToNote(id) {
-        navigation.navigate('Note', { id });
-    }
+    const goToNote = id => navigation.navigate('Note', { id });
     /**
      * render a note info
      * @param {String} id 
@@ -49,7 +49,7 @@ export default function noteList(notes, navigation) {
                 </View>
             </View>
         );
-    }
+    };
 
     return (
         <FlatList

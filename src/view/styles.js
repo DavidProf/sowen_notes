@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
+const styles = {
     // noteList.js
     noteItem: {
         flex: 1,
@@ -87,6 +85,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: '#fff'
     }
-});
+};
 
 export default styles;
