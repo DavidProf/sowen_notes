@@ -1,31 +1,4 @@
 {
-  "expo": {
-    "name": "Sowen notes",
-    "slug": "sowen_notes",
-    "privacy": "public",
-    "platforms": [
-      "android",
-      "web"
-    ],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon_sowen_notes.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.sowen.sowen_notes"
-    }
-  }
+  "name": "sowen_notes",
+  "displayName": "Sowen Notes"
 }

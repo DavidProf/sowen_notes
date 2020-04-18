@@ -1,4 +1,4 @@
-import * as SQLite from 'expo-sqlite';
+import SQLite from 'react-native-sqlite-storage';
 
 /**
  * Init database
@@ -18,7 +18,7 @@ function DB(databaseStructure) {
     if (typeof databaseStructure.name != 'string') throw new Error('Invalid database name');
     if (!Array.isArray(databaseStructure.tables)) throw new Error('Invalid database tables');
 
-    this._db = SQLite.openDatabase(`${databaseStructure.name}.db`);
+    this._db = SQLite.openDatabase(`${databaseStructure.name}.db`, "Demo", -1);
 
     for (let table of databaseStructure.tables) this.createTable(table);
 
@@ -72,11 +72,11 @@ DB.prototype.createTable = async function (tableStructure) {
 
     if (error) throw new Error(error);
 
-    let [{ _complete }] = await this.executeSql(sqlCommand);
+    let [{ finalized }] = await this.executeSql(sqlCommand);
+    
+    for (let { colls, unique } of tableStructure.indexes) await this.createIndex(tableStructure.name, colls, unique);
 
-    for (let { colls, unique } in tableStructure.indexes) await this.createIndex(tableStructure.name, colls, unique);
-
-    return _complete;
+    return finalized;
 };
 
 /**
@@ -85,8 +85,8 @@ DB.prototype.createTable = async function (tableStructure) {
  * @returns {Boolean}
  */
 DB.prototype.dropTable = async function (name) {
-    let [{ _complete }] = await this.executeSql(`drop table if exists '${name}'`);
-    return _complete;
+    let [{ finalized }] = await this.executeSql(`drop table if exists '${name}'`);
+    return finalized;
 }
 /**
  * Create an index on table
@@ -100,12 +100,13 @@ DB.prototype.createIndex = async function (tableName, colls = [], unique = false
     if (!Array.isArray(colls)) throw new Error(`Invalid colls, must be array`);
     if (colls.length < 1) return true;
 
-    let [{ _complete }] = await this.executeSql(
-        `CREATE ${Boolean(unique) ? 'UNIQUE' : ''} INDEX 'index_${colls.join('_')}' ON '${tableName}' ('${colls.join("','")}')`
+    let [{ finalized }] = await this.executeSql(
+        `CREATE ${Boolean(unique) ? 'UNIQUE' : ''} INDEX IF NOT EXISTS 'index_${colls.join('_')}' ON '${tableName}' ('${colls.join("','")}')`
     );
-    return _complete;
+    return finalized;
 }
 /**
+ * Add follow
  * insert
  * update
  * delete

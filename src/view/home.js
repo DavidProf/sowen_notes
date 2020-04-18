@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     TouchableOpacity,
     View,
@@ -15,11 +15,11 @@ export default function Home({ navigation }) {
     const [pX] = useState(new Animated.Value(15));
     const [pY] = useState(new Animated.Value(15));
 
-    db.selectAll().then(rows => setNotes(rows));
+    useEffect(() => navigation.addListener('focus', () => db.selectAll().then(rows => setNotes(rows))), [navigation]);
 
     function showOptions() {
-        Animated.timing(pX, { toValue: show ? 15 : 90, duration: 250 }).start();
-        Animated.timing(pY, { toValue: show ? 15 : 90, duration: 250 }).start();
+        Animated.timing(pX, { toValue: show ? 15 : 90, duration: 200, useNativeDriver: false }).start();
+        Animated.timing(pY, { toValue: show ? 15 : 90, duration: 200, useNativeDriver: false }).start();
         setShow(!show);
     }
 
