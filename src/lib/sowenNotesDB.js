@@ -41,9 +41,9 @@ let sowenNotesDB = {
         let id = uuid();
         let sql =
             `insert into note (id, title, content, date, mark) values ('${id}', ?, ?, '${new Date().toISOString()}', ?);`;
-        let [{ _complete }] = await this._db.executeSql(sql, [title, content, mark]);
+        let [, { rowsAffected }] = await this._db.executeSql(sql, [title, content, mark]);
 
-        return _complete ? id : false;
+        return rowsAffected ? id : false;
     },
     /**
      * Update a note
@@ -64,9 +64,9 @@ let sowenNotesDB = {
 
         let sql =
             `update note set date = '${new Date().toISOString()}', title = ?, content = ?, mark = ? where id = ?;`;
-        let [{ _complete }] = await this._db.executeSql(sql, [title, content, mark, id]);
+        let [, { rowsAffected }] = await this._db.executeSql(sql, [title, content, mark, id]);
 
-        return _complete;
+        return !!rowsAffected;
     },
     /**
      * Delete notes
@@ -79,9 +79,9 @@ let sowenNotesDB = {
         if (ids.length < 1) return true;
 
         let sql = `delete from note where id in (${'?,'.repeat(ids.length)}?)`;
-        let [{ _complete }] = await this._db.executeSql(sql, [...ids, '']);
+        let [, { rowsAffected }] = await this._db.executeSql(sql, [...ids, '']);
 
-        return _complete;
+        return !!rowsAffected;
     },
     /**
      * Select a note
@@ -94,8 +94,8 @@ let sowenNotesDB = {
         if (!id) return {};
 
         let sql = `select * from note where id = ?`;
-        let [_, { rows: {_array: [note]} }] = await this._db.executeSql(sql, [id]);
-        return note;
+        let [, result] = await this._db.executeSql(sql, [id]);
+        return result.rows.raw()[0];
     },
     /**
      * Select all notes
@@ -103,8 +103,8 @@ let sowenNotesDB = {
      */
     async selectAll() {
         let sql = `select * from note`;
-        let [, { rows: { _array: notes } }] = await this._db.executeSql(sql);
-        return notes;
+        let [, result] = await this._db.executeSql(sql);
+        return result.rows.raw();
     }
 };
 

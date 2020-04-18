@@ -42,7 +42,8 @@ export default function noteList(notes, navigation) {
                     <Text style={styles.noteItemLastUpdate}>Last update: {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
                 </View>
                 <View style={styles.noteItemDelete}>
-                    <TouchableOpacity onPress={() => db.delete([id]).then(() => navigation.navigate('Home'))}>
+                    <TouchableOpacity
+                        onPress={() => db.delete([id]).then(success => success ? navigation.navigate('Home') : alert('fail'))}>
                         <Text style={styles.noteItemDelete}>delete</Text>
                     </TouchableOpacity>
                 </View>
