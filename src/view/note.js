@@ -14,6 +14,7 @@ import Toast from 'react-native-simple-toast';
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
 import styles from './styles';
+import theme from './theme';
 
 /**
  * Render note list
@@ -49,7 +50,7 @@ export default function note({ route: { params }, navigation }) {
     }
 
     return note.founded ? (
-        <SafeAreaView style={{ flex: 1, padding: 15, backgroundColor: getMarkColor(note.mark) }}>
+        <SafeAreaView style={{ flex: 1, padding: 15, backgroundColor: getMarkColor(note.mark, process.env.THEME) }}>
             <TextInput
                 style={styles.title}
                 defaultValue={note.title}
@@ -60,7 +61,7 @@ export default function note({ route: { params }, navigation }) {
                 numberOfLines={10000}
                 defaultValue={note.content}
                 onChangeText={text => setNote({ ...note, content: text })} />
-            <View style={[styles.picker, { backgroundColor: getMarkColor(note.mark) }]}>
+            <View style={[styles.picker, { backgroundColor: getMarkColor(note.mark, process.env.THEME) }]}>
                 <Picker
                     selectedValue={note.mark}
                     onValueChange={choice => { setNote({ ...note, mark: choice }); }}>
@@ -72,7 +73,7 @@ export default function note({ route: { params }, navigation }) {
                     <Picker.Item label="Grey" value={5} />
                 </Picker>
             </View>
-            <TouchableOpacity style={styles.roundedButton}
+            <TouchableOpacity style={[styles.roundedButton, { backgroundColor: theme.colors.roundedButton }]}
                 disabled={pressed}
                 onPressOut={async () => await save() && navigation.navigate('Home')}>
                 <Image source={icons.done} style={styles.icon} />

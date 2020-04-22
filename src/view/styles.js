@@ -12,16 +12,12 @@ const styles = {
         color: '#282829',
         fontWeight: 'bold'
     },
-    noteItemLastUpdate: {
-        color: '#7c7d80'
-    },
     noteItemDelete: {
         flex: 1,
         flexDirection: 'row-reverse',
         right: 5,
         textTransform: "uppercase",
-        fontFamily: "sans-serif-medium",
-        color: "#B85450"
+        fontFamily: "sans-serif-medium"
     },
     // note.js
     title: {
@@ -52,7 +48,6 @@ const styles = {
     // home.js & settings.js
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
         justifyContent: 'center',
         padding: 15,
         paddingTop: 26
@@ -65,7 +60,6 @@ const styles = {
         width: 65,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#2A7AFA',
         borderRadius: 50,
         right: 15,
         bottom: 15,
@@ -77,7 +71,6 @@ const styles = {
         marginVertical: 5,
         padding: 12,
         borderRadius: 5,
-        backgroundColor: '#2A7AFA',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },

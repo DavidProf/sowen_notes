@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import getMarkColor from '../lib/getMarkColor';
 import db from '../lib/sowenNotesDB';
 import styles from './styles';
+import theme from './theme';
 
 /**
  * Render note list
@@ -28,7 +29,7 @@ export default function noteList(notes, navigation) {
      * @param {Number} mark 
      */
     function noteItem(id, title, date, mark) {
-        let backgroundColor = getMarkColor(mark);
+        let backgroundColor = getMarkColor(mark, process.env.THEME);
 
         return (
             <View
@@ -36,15 +37,15 @@ export default function noteList(notes, navigation) {
                 style={[styles.noteItem, { backgroundColor }]}
                 onTouchEnd={() => goToNote(id)}>
                 <View>
-                    <Text style={styles.noteItemTitle}>{title}</Text>
+                    <Text style={[styles.noteItemTitle, { color: theme.colors.textTitle }]}>{title}</Text>
                 </View>
                 <View>
-                    <Text style={styles.noteItemLastUpdate}>Last update: {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
+                    <Text style={{ color: theme.colors.textLastUpdate }}>Last update: {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}</Text>
                 </View>
                 <View style={styles.noteItemDelete}>
                     <TouchableOpacity
                         onPress={() => db.delete([id]).then(success => success ? navigation.navigate('Home') : alert('fail'))}>
-                        <Text style={styles.noteItemDelete}>delete</Text>
+                        <Text style={[styles.noteItemDelete, { color: theme.colors.textDelete }]}>delete</Text>
                     </TouchableOpacity>
                 </View>
             </View>

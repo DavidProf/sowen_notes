@@ -10,6 +10,7 @@ A simple mobile note app from sowen series
 - [X] Read the note
 - [X] Edit the note
 - [X] Delete the note or select multiple notes and delete
+- [X] Dark theme
 - [ ] Backup data
 
 ## How to contribute

@@ -7,24 +7,31 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import theme from './theme';
 
 export default function Settings({ route: { params }, navigation }) {
 
+    function toggleTheme() {
+        process.env.THEME = process.env.THEME != 'night' ? 'night' : 'sun';
+        theme.setTheme(process.env.THEME);
+    }
 
     return (
-        <View style={[styles.container, { justifyContent: "flex-start" }]}>
-            <TouchableOpacity style={styles.itemButton}>
+        <View style={[styles.container, { justifyContent: "flex-start", backgroundColor: theme.colors.background }]}>
+            <TouchableOpacity style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}>
                 <Text style={styles.itemButtonText}>Backup</Text>
                 <Image source={icons.upload} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.itemButton}>
+            <TouchableOpacity style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}>
                 <Text style={styles.itemButtonText}>Restore</Text>
                 <Image source={icons.download} style={styles.icon} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.itemButton}>
+            <TouchableOpacity
+                style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}
+                onPress={toggleTheme}>
                 <Text style={styles.itemButtonText}>Change theme</Text>
-                <Image source={icons.sun} style={styles.icon} />
+                <Image source={process.env.THEME != 'night' ? icons.sun : icons.moon} style={styles.icon} />
             </TouchableOpacity>
         </View>
     );
