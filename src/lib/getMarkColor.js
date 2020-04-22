@@ -1,16 +1,9 @@
-export default mark => {
-    switch (mark) {
-        case 1:
-            return '#F8CECC';
-        case 2:
-            return '#FFF2CC';
-        case 3:
-            return '#DAE8FC';
-        case 4:
-            return '#D5E8D4';
-        case 5:
-            return '#CCCCCC';
-        default:
-            return '#F5F5F5'
-    }
-}
+const colors = {
+    1:'#F8CECC',
+    2:'#FFF2CC',
+    3:'#DAE8FC',
+    4:'#D5E8D4',
+    5:'#CCCCCC',
+};
+
+export default mark => colors[mark] ?? '#F5F5F5';
