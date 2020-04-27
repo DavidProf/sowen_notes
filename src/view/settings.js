@@ -18,15 +18,6 @@ export default function Settings({ route: { params }, navigation }) {
 
     return (
         <View style={[styles.container, { justifyContent: "flex-start", backgroundColor: theme.colors.background }]}>
-            <TouchableOpacity style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}>
-                <Text style={styles.itemButtonText}>Backup</Text>
-                <Image source={icons.upload} style={styles.icon} />
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}>
-                <Text style={styles.itemButtonText}>Restore</Text>
-                <Image source={icons.download} style={styles.icon} />
-            </TouchableOpacity>
-
             <TouchableOpacity
                 style={[styles.itemButton, { backgroundColor: theme.colors.itemButton }]}
                 onPress={toggleTheme}>
@@ -38,8 +29,6 @@ export default function Settings({ route: { params }, navigation }) {
 };
 
 const icons = {
-    upload: require('../../assets/upload.png'),
-    download: require('../../assets/download.png'),
     sun: require('../../assets/sun.png'),
     moon: require('../../assets/moon.png'),
 }
